@@ -17,7 +17,7 @@ public class BookTickets extends BaseSetup{
 
     private HashMap<String,String> params;
     private String baseUrl = null;
-    CheckoutPage check ;
+
 
     @Before
 	public void setUp() throws Exception {
@@ -32,7 +32,7 @@ public class BookTickets extends BaseSetup{
         params.put("cardNumber", "243738463839746");
         params.put("cvv", "567");
         params.put("expiry", "12/12");
-        check = new CheckoutPage();
+
     
     }
 
@@ -49,26 +49,13 @@ public class BookTickets extends BaseSetup{
 		        driver.findElement(By.xpath("//a[@data-performance='Saturday 01 February 2020 - 19:45']")).click();
 		        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loading-overlay__wrap")));
 		        selectSeat("");
-		        
+		        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//a[@id='SeatPlanSubmit'][@disabled='disabled']")));
 		        driver.findElement(By.xpath("//span[contains(.,'Add to basket')]")).click();
 		        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("loading-overlay__wrap")));
 		        Actions action= new Actions(driver);
 		        action.moveToElement(driver.findElement(By.cssSelector("[data-method='methodCard'] span.label"))).click().build().perform();
-//		        CheckoutPage check = new CheckoutPage();
-		        check.setPageParameterValues(params);
-//		        driver.findElement(By.cssSelector("[name='name']")).sendKeys("Saloni");
-//		        driver.findElement(By.cssSelector("[name='email']")).sendKeys("Saloni@saloni.j");
-//		        driver.findElement(By.cssSelector("[name='tel']")).sendKeys("3441411341341");
-//		        driver.findElement(By.cssSelector("[name='card']")).sendKeys("134343242342342323");
-//		        driver.findElement(By.cssSelector("[name='expiry']")).sendKeys("12/12");
-//		        driver.findElement(By.cssSelector("[name='cvv']")).sendKeys("234");
-//		        driver.findElement(By.cssSelector(".my--3 button.ltd-button")).click();
-//		        String color=driver.findElement(By.cssSelector("[name='cvv']")).getCssValue("border-color");
-////		        returnColor(color);
-//		        System.out.println(driver.findElement(By.cssSelector("[name='cvv']")).getCssValue("border-color"));
-//		        if(driver.findElement(By.cssSelector("[name='cvv']")).getCssValue("border-color").equalsIgnoreCase("rgb(217, 217, 217)"))
-//		        	System.out.println("hurrah");
-
+		        CheckoutPage check = new CheckoutPage();
+		        check.setPageParameterValues(params, driver);
 		       
 	}
  	

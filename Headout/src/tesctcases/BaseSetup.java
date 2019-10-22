@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BaseSetup {
 
 	 	public WebDriver driver;
-	    public WebDriverWait wait;
+	    public static WebDriverWait wait;
 		
     	
     	@Before
